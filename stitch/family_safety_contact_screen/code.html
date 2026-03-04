@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2f7f33",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#141e15",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>가족 안심 연락처</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-[24px] font-bold leading-tight tracking-tight flex-1 text-center pr-12">가족 안심 연락처</h2>
+</div>
+<!-- Toast Message (Top Position) -->
+<div class="px-4 py-3">
+<div class="flex items-center justify-between gap-4 rounded-xl border border-primary/20 bg-primary/10 p-5 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight">설정이 저장되었어요</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-base font-bold shadow-md">
+                    확인
+                </button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto px-4 pb-32">
+<!-- Guardian Info Section -->
+<div class="space-y-6 pt-4">
+<div class="flex flex-col gap-2">
+<label class="text-slate-900 dark:text-slate-100 text-xl font-bold">보호자 이름</label>
+<input class="w-full h-16 rounded-xl border-2 border-primary/20 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-5 text-xl placeholder:text-slate-400 focus:border-primary focus:ring-0" placeholder="예: 딸 김지은" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-900 dark:text-slate-100 text-xl font-bold">전화번호</label>
+<input class="w-full h-16 rounded-xl border-2 border-primary/20 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-5 text-xl placeholder:text-slate-400 focus:border-primary focus:ring-0" placeholder="010-0000-0000" type="tel"/>
+</div>
+</div>
+<!-- Notification Settings Section -->
+<div class="mt-10 border-t border-primary/10 pt-8">
+<h3 class="text-slate-900 dark:text-slate-100 text-[20px] font-bold mb-6">미복용 알림 설정</h3>
+<div class="space-y-4">
+<p class="text-slate-600 dark:text-slate-400 text-lg font-medium">미복용 알림 지연시간</p>
+<div class="flex gap-3">
+<button class="flex-1 h-20 rounded-xl border-2 border-primary bg-primary/10 text-primary text-2xl font-bold flex items-center justify-center shadow-sm">
+                            20분
+                        </button>
+<button class="flex-1 h-20 rounded-xl border-2 border-primary/20 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-2xl font-bold flex items-center justify-center">
+                            30분
+                        </button>
+<button class="flex-1 h-20 rounded-xl border-2 border-primary/20 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-2xl font-bold flex items-center justify-center">
+                            60분
+                        </button>
+</div>
+</div>
+<!-- Toggle Section -->
+<div class="mt-8 flex items-center justify-between p-5 rounded-xl bg-white dark:bg-slate-800 border border-primary/10 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">family_restroom</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-slate-100 text-xl font-bold">보호자 알림</span>
+<span class="text-primary text-base font-bold">보호자에게 알림을 보내요</span>
+</div>
+</div>
+<!-- iOS style toggle switch -->
+<div class="relative inline-flex h-8 w-14 items-center rounded-full bg-primary cursor-pointer">
+<span class="inline-block h-6 w-6 translate-x-7 transform rounded-full bg-white transition-transform"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="w-full h-[56px] bg-primary text-white text-xl font-bold rounded-xl shadow-lg flex items-center justify-center hover:opacity-90 active:scale-95 transition-transform">
+                설정 저장
+            </button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2e7d32",
+                        "background-light": "#f7f9fb",
+                        "background-dark": "#141e15",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-3xl">pill</span>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">안심복약</h1>
+</div>
+<button class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">family_restroom</span>
+</button>
+</header>
+<main class="flex-1 px-6 pt-6">
+<!-- Header Section -->
+<div class="mb-8">
+<h2 class="text-[28px] font-bold leading-tight text-slate-900 dark:text-white mb-2">오늘 복약</h2>
+<p class="text-lg font-semibold text-primary">복용 시간이 되었어요</p>
+</div>
+<!-- Medication List -->
+<div class="space-y-6">
+<!-- Card 1: Pending Medication -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">medication</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">혈압약 A</h3>
+<div class="flex items-center gap-1 mt-1 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-base">schedule</span>
+<p class="text-base font-medium">복용 시간: 오전 8:00</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6 px-1">
+<p class="text-lg font-medium text-slate-500 dark:text-slate-400 italic">아직 복용 전이에요</p>
+</div>
+<button class="flex w-full h-14 items-center justify-center rounded-xl bg-primary text-white text-lg font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
+<span>복용했어요</span>
+</button>
+</div>
+<!-- Card 2: Completed Medication -->
+<div class="rounded-xl bg-[#e2f3e6] dark:bg-primary/20 p-6 border border-primary/20">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="flex h-14 w-14 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-primary shadow-sm">
+<span class="material-symbols-outlined text-3xl">check_circle</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">비타민 D</h3>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-lg font-bold text-primary">복용했어요</p>
+<span class="text-slate-400 dark:text-slate-500 text-sm font-medium">오전 9:15</span>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 text-base font-medium text-slate-500 dark:text-slate-400 bg-slate-100/50 dark:bg-slate-700/50 rounded-lg">
+                            수정하기
+                        </button>
+</div>
+</div>
+<!-- Informational Note for Seniors -->
+<div class="rounded-xl border-2 border-dashed border-primary/30 p-6 flex flex-col items-center justify-center text-center space-y-2">
+<span class="material-symbols-outlined text-primary/60 text-4xl">notifications_active</span>
+<p class="text-slate-600 dark:text-slate-400 font-medium">가족들에게 복약 알림이 전송됩니다</p>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Add Button -->
+<div class="fixed bottom-24 left-0 right-0 px-6 z-40">
+<button class="flex w-full h-[60px] items-center justify-center gap-2 rounded-xl bg-primary text-white text-xl font-bold shadow-xl">
+<span class="material-symbols-outlined text-2xl">add</span>
+<span>약 추가하기</span>
+</button>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pb-8 pt-3 z-50">
+<div class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[28px] fill-1">home</span>
+<p class="text-xs font-bold tracking-wide">홈</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[28px]">history</span>
+<p class="text-xs font-bold tracking-wide">기록</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[28px]">notifications</span>
+<p class="text-xs font-bold tracking-wide">알림</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[28px]">settings</span>
+<p class="text-xs font-bold tracking-wide">설정</p>
+</a>
+</div>
+</nav>
+</div>
+</body></html>
