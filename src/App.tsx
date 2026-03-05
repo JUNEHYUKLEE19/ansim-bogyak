@@ -16,6 +16,7 @@ import {
   AlertCircle,
   Trash2
 } from 'lucide-react';
+import { getTodayMeds, addMed, getCaregiver, saveCaregiver } from "./lib/storage";
 
 // --- Types ---
 
@@ -120,20 +121,20 @@ export default function App() {
   const [isActionDisabled, setIsActionDisabled] = useState(false);
 
   // Fetch Data
-  const fetchData = useCallback(async () => {
-    try {
-      const [medsRes, logsRes, cgRes] = await Promise.all([
-        fetch('/api/medications'),
-        fetch('/api/dose-logs/today'),
-        fetch('/api/caregiver')
-      ]);
-      setMedications(await medsRes.json());
-      setDoseLogs(await logsRes.json());
-      setCaregiver(await cgRes.json());
-    } catch (err) {
-      console.error("Failed to fetch data", err);
-    }
-  }, []);
+const fetchData = useCallback(async () => {
+try {
+const meds = getTodayMeds();
+setMedications(meds);
+
+const cg = getCaregiver();
+setCaregiver(cg ?? null);
+
+// MVP에서는 서버 로그 대신 빈 배열
+setDoseLogs([]);
+} catch (err) {
+console.error("Failed to fetch data", err);
+}
+}, []);
 
   useEffect(() => {
     fetchData();
@@ -271,7 +272,9 @@ export default function App() {
       }
 
       try {
-        await fetch('/api/medications', {
+        await const meds = getTodayMeds();
+setMedications(meds);
+, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, time, times_per_day: timesPerDay, with_meal: withMeal, start_date: startDate })
@@ -353,34 +356,42 @@ export default function App() {
       </div>
     );
   };
+const FamilyScreen = () => {
+const [name, setName] = useState(caregiver?.name || "");
+const [phone, setPhone] = useState(caregiver?.phone || "");
+const [delay, setDelay] = useState(caregiver?.delay_minutes || 30);
+const [enabled, setEnabled] = useState(caregiver?.enabled || false);
 
-  const FamilyScreen = () => {
-    const [name, setName] = useState(caregiver?.name || '');
-    const [phone, setPhone] = useState(caregiver?.phone || '');
-    const [delay, setDelay] = useState(caregiver?.delay_minutes || 30);
-    const [enabled, setEnabled] = useState(caregiver?.enabled || false);
+const formatPhone = (val: string) => {
+const nums = val.replace(/\D/g, "");
+if (nums.length <= 3) return nums;
+if (nums.length <= 7) return `${nums.slice(0, 3)}-${nums.slice(3)}`;
+return `${nums.slice(0, 3)}-${nums.slice(3, 7)}-${nums.slice(7, 11)}`;
+};
 
-    const formatPhone = (val: string) => {
-      const nums = val.replace(/\D/g, '');
-      if (nums.length <= 3) return nums;
-      if (nums.length <= 7) return `${nums.slice(0, 3)}-${nums.slice(3)}`;
-      return `${nums.slice(0, 3)}-${nums.slice(3, 7)}-${nums.slice(7, 11)}`;
-    };
+const handleSave = () => {
+try {
+saveCaregiver({
+name,
+phone,
+delay_minutes: delay,
+enabled,
+});
 
-    const handleSave = async () => {
-      try {
-        await fetch('/api/caregiver', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, delay_minutes: delay, enabled })
-        });
-        showToast("설정이 저장되었어요");
-        fetchData();
-      } catch (err) {
-        console.error(err);
-      }
-    };
+const cg = getCaregiver();
+if (cg) setCaregiver(cg);
 
+showToast("설정이 저장되었어요");
+fetchData();
+} catch (err) {
+console.error(err);
+}
+};
+
+// ...아래 JSX는 기존 코드 유지
+};
+
+ 
     return (
       <div className="space-y-8 pb-32">
         <header className="py-4">
