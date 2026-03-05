@@ -272,7 +272,7 @@ console.error("Failed to fetch data", err);
       }
 
       try {
-        await const meds = getTodayMeds();
+        const meds = await getTodayMeds();
 setMedications(meds);
 , {
           method: 'POST',
