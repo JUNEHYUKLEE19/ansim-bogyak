@@ -274,7 +274,7 @@ console.error("Failed to fetch data", err);
       try {
         const meds = await getTodayMeds();
 setMedications(meds);
-, {
+const response = await fetch('/api/medications',
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, time, times_per_day: timesPerDay, with_meal: withMeal, start_date: startDate })
