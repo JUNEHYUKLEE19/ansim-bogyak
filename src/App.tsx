@@ -280,7 +280,7 @@ setMedications(meds);
           body: JSON.stringify({ name, time, times_per_day: timesPerDay, with_meal: withMeal, start_date: startDate })
         });
         showToast("약 등록이 완료되었어요");
-        fetchData();
+        await fetchData();
         setActiveTab('today');
       } catch (err) {
         console.error(err);
